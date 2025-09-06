@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usher Team Portal</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #0d6efd;
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.4em;
+    }
+
+    /* Tab content */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 15px;
+    }
+
+    .tab {
+      display: none;
+      width: 100%;
+      max-width: 650px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      animation: fadeIn 0.3s ease;
+    }
+    .tab.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Buttons inside tabs */
+    .button {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      margin: 10px 0;
+      padding: 14px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 600;
+      border-radius: 10px;
+      color: white;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-sizing: border-box;
+    }
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .regular {
+      background-color: #0d6efd;
+    }
+    .core {
+      background-color: #dc3545;
+    }
+
+    /* Notes */
+    textarea {
+      width: 100%;
+      min-height: 140px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      box-sizing: border-box;
+      resize: vertical;
+      transition: border 0.2s;
+    }
+    textarea:focus {
+      border-color: #0d6efd;
+      outline: none;
+      box-shadow: 0 0 4px rgba(13,110,253,0.4);
+    }
+
+    /* Bottom nav bar */
+    .nav {
+      display: flex;
+      justify-content: space-around;
+      background: #212529;
+      padding: 10px 0;
+      border-top: 1px solid #333;
+      position: sticky;
+      bottom: 0;
+    }
+
+    .nav button {
+      flex: 1;
+      padding: 10px 0;
+      font-size: 0.9em;
+      font-weight: 600;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #bbb;
+      transition: all 0.2s;
+    }
+    .nav button.active {
+      color: #0d6efd;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ROG ORTIGAS
+	Usher Team Portal</h1>
+  </header>
+
+  <main>
+    <!-- General Section -->
+	<div id="general" class="tab active">
+	  <h2>📋 General Links</h2>
+	  <a class="button regular" href="https://forms.gle/4D16PbC6X39DPG949">Member Registration</a>
+	  <a class="button regular" href="https://forms.gle/FcwabPn5ASpWDdRD7">Service and Event Registration</a>
+
+	  <h2>📢 Upcoming Events</h2>
+	  <div style="position: relative; width: 100%; max-width: 600px; margin: 0 auto;">
+		<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FManila&showPrint=0&showTitle=0&showNav=0&showDate=0&showTabs=0&showCalendars=0&showTz=0&mode=AGENDA&hl=en&title=ROG%20Ortigas%20Ushering%20Ministry&src=cm9ndXNoZXJpbmdtaW5pc3RyeUBwcm90b24ubWU&color=%23039be5"
+		  style="border-width:0; width:100%; height:300px;" frameborder="0" scrolling="no"></iframe>
+	  </div>
+	</div>
+
+    <!-- Core Leaders Section -->
+    <div id="core" class="tab">
+      <h2>📝 Core Leader Tools</h2>
+      <a class="button core" href="https://docs.google.com/spreadsheets/d/1Sr_hM7XTar6kkzBaXaoISzDpkMcX26V8-mWThqnb1HE/edit?usp=sharing">Ushers DB</a>
+      <a class="button core" href="https://docs.google.com/spreadsheets/d/1aY14aXL0fWWY9-EcGdi2_aEFjRrU5l4xtckOZTmBWRI/edit?usp=sharing">Event Summary</a>
+    </div>
+
+    <!-- Notes Section -->
+    <div id="notes" class="tab">
+      <h2>🗒️ Personal Notes</h2>
+      <textarea id="notesBox" placeholder="Write quick notes here..."></textarea>
+    </div>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <div class="nav">
+    <button class="active" onclick="openTab('general', this)">General</button>
+    <button onclick="openTab('core', this)">Core</button>
+    <button onclick="openTab('notes', this)">Notes</button>
+  </div>
+
+  <script>
+    function openTab(tabId, btn) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // Notes persistence
+    const notesBox = document.getElementById("notesBox");
+    notesBox.value = localStorage.getItem("usherNotes") || "";
+    notesBox.addEventListener("input", () => {
+      localStorage.setItem("usherNotes", notesBox.value);
+    });
+  </script>
+</body>
+</html>
