@@ -86,22 +86,16 @@
       background-color: #dc3545;
     }
 
-    /* Notes */
-    textarea {
-      width: 100%;
-      min-height: 140px;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-      box-sizing: border-box;
-      resize: vertical;
-      transition: border 0.2s;
+    /* Info links */
+    .info-links a {
+      display: block;
+      margin: 8px 0;
+      color: #0d6efd;
+      text-decoration: none;
+      font-weight: 500;
     }
-    textarea:focus {
-      border-color: #0d6efd;
-      outline: none;
-      box-shadow: 0 0 4px rgba(13,110,253,0.4);
+    .info-links a:hover {
+      text-decoration: underline;
     }
 
     /* Bottom nav bar */
@@ -142,7 +136,7 @@
     <!-- General Section -->
 	<div id="general" class="tab active">
 	  <h2>📋 General Links</h2>
-	  <a class="button regular" href="https://forms.gle/4D16PbC6X39DPG949">Member Registration</a>
+	  <a class="button regular" href="https://forms.gle/4D16PbC6X39DPG949">New Member Registration</a>
 	  <a class="button regular" href="https://forms.gle/FcwabPn5ASpWDdRD7">Service and Event Registration</a>
 
 	  <h2>📢 Upcoming Events</h2>
@@ -157,20 +151,26 @@
       <h2>📝 Core Leader Tools</h2>
       <a class="button core" href="https://docs.google.com/spreadsheets/d/1Sr_hM7XTar6kkzBaXaoISzDpkMcX26V8-mWThqnb1HE/edit?usp=sharing">Ushers DB</a>
       <a class="button core" href="https://docs.google.com/spreadsheets/d/1aY14aXL0fWWY9-EcGdi2_aEFjRrU5l4xtckOZTmBWRI/edit?usp=sharing">Registration Lists</a>
+	  <a class="button core" href="https://docs.google.com/spreadsheets/d/1P5ZTL-wtpQk2_6lv11OLoLlZFRiInOoK6mrvnYziEF0/edit?usp=sharing">Not Registered Lists</a>
     </div>
 
-    <!-- Notes Section -->
-    <div id="notes" class="tab">
-      <h2>🗒️ Personal Notes</h2>
-      <textarea id="notesBox" placeholder="Write quick notes here..."></textarea>
-    </div>
+    <!-- Info Section -->
+    <div id="info" class="tab">
+	  <h2>ℹ️ Info & Resources</h2>
+	  <div class="info-links">
+		<img src="USHER CORE LEADERS.png" alt="Usher Core Leaders" style="max-width:100%; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+		<img src="PASTORS MINISTERS 1.png" alt="Usher Core Leaders" style="max-width:100%; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+		<img src="PASTORS MINISTERS 2.png" alt="Usher Core Leaders" style="max-width:100%; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+	  </div>
+	</div>
+
   </main>
 
   <!-- Bottom Navigation -->
   <div class="nav">
     <button class="active" onclick="openTab('general', this)">General</button>
     <button onclick="openTab('core', this)">Core</button>
-    <button onclick="openTab('notes', this)">Notes</button>
+    <button onclick="openTab('info', this)">Info</button>
   </div>
 
   <script>
@@ -180,13 +180,6 @@
       document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
-
-    // Notes persistence
-    const notesBox = document.getElementById("notesBox");
-    notesBox.value = localStorage.getItem("usherNotes") || "";
-    notesBox.addEventListener("input", () => {
-      localStorage.setItem("usherNotes", notesBox.value);
-    });
   </script>
 </body>
 </html>
